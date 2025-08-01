@@ -26,9 +26,9 @@ class SyntaxHighlighter {
       // Process any pending blocks
       this.processPendingBlocks();
 
-      console.log('✨ Syntax highlighter loaded');
+      console.log('Syntax highlighter loaded');
     } catch (error) {
-      console.warn('⚠️ Syntax highlighter failed to load:', error);
+      console.warn('Syntax highlighter failed to load:', error);
     }
   }
 

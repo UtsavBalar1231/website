@@ -286,8 +286,8 @@ After completing these tutorials, consider advancing to:
 ---
 
 ```bash
-$ echo "Happy kernel hacking! 🐧"
-Happy kernel hacking! 🐧
+$ echo "Happy kernel hacking!"
+Happy kernel hacking!
 
 $ echo "Remember: With great kernel access comes great responsibility"
 Remember: With great kernel access comes great responsibility
