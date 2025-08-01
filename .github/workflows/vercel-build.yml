@@ -1,0 +1,71 @@
+name: Build WASM for Vercel
+
+on:
+  push:
+    branches: [ main ]
+    paths: 
+      - 'syntax-highlighter/**'
+      - '.github/workflows/vercel-build.yml'
+  workflow_dispatch:
+
+jobs:
+  build-wasm:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        targets: wasm32-unknown-unknown
+
+    - name: Cache Rust dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          syntax-highlighter/target/
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-cargo-
+
+    - name: Install wasm-pack
+      run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+    - name: Install binaryen (for wasm-opt)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y binaryen
+
+    - name: Build WebAssembly
+      run: |
+        cd syntax-highlighter
+        chmod +x build.sh
+        ./build.sh
+
+    - name: Commit built WASM files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Copy built files to _site directory for Vercel
+        mkdir -p _site/js
+        cp syntax-highlighter/pkg/syntax_highlighter.js _site/js/
+        cp syntax-highlighter/pkg/syntax_highlighter_bg.wasm _site/js/
+        
+        # Add files to git
+        git add _site/js/syntax_highlighter.js
+        git add _site/js/syntax_highlighter_bg.wasm
+        
+        # Only commit if there are changes
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Update pre-built WASM files for Vercel [skip ci]"
+          git push
+        fi

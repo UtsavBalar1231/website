@@ -112,3 +112,6 @@ dev/
 
 # Rollup
 rollup.config.js.map
+
+# Vercel
+.vercel

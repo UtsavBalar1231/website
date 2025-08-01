@@ -1,0 +1,183 @@
+name: Build and Deploy Portfolio
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Setup Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        targets: wasm32-unknown-unknown
+
+    - name: Cache Rust dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          syntax-highlighter/target/
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-cargo-
+
+    - name: Install wasm-pack
+      run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+
+    - name: Install binaryen (for wasm-opt)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y binaryen
+
+    - name: Install Node.js dependencies
+      run: npm ci
+
+    - name: Build syntax highlighter (WASM)
+      run: |
+        echo "Building WebAssembly syntax highlighter..."
+        cd syntax-highlighter
+        chmod +x build.sh
+        ./build.sh
+        cd ..
+        echo "WASM build complete"
+
+    - name: Build 11ty site
+      run: |
+        echo "Building 11ty site..."
+        npx eleventy
+        echo "11ty build complete"
+
+    - name: Build and bundle JavaScript
+      run: |
+        echo "Building JavaScript bundle..."
+        npx rollup -c
+        echo "JavaScript bundle complete"
+
+    - name: Copy WASM files to output
+      run: |
+        echo "Copying WASM files..."
+        mkdir -p _site/js
+        cp syntax-highlighter/pkg/syntax_highlighter.js _site/js/
+        cp syntax-highlighter/pkg/syntax_highlighter_bg.wasm _site/js/
+        echo "WASM files copied"
+
+    - name: Copy static assets
+      run: |
+        echo "Copying static assets..."
+        cp -r src/static/* _site/
+        echo "Static assets copied"
+
+    - name: Generate deployment info
+      run: |
+        echo "Generating deployment information..."
+        
+        # Create build info
+        cat > _site/build-info.json << EOF
+        {
+          "buildTime": "$(date -u '+%Y-%m-%d %H:%M:%S UTC')",
+          "commit": "${{ github.sha }}",
+          "branch": "${{ github.ref_name }}",
+          "workflow": "${{ github.workflow }}",
+          "runId": "${{ github.run_id }}",
+          "actor": "${{ github.actor }}"
+        }
+        EOF
+        
+        # Bundle size analysis
+        if [ -f "_site/css/main.css" ]; then
+          CSS_SIZE=$(stat -c%s _site/css/main.css)
+          CSS_GZIP=$(gzip -c _site/css/main.css | wc -c)
+          echo "CSS: ${CSS_SIZE} bytes (${CSS_GZIP} gzipped)"
+        fi
+        
+        if [ -f "_site/js/bundle.js" ]; then
+          JS_SIZE=$(stat -c%s _site/js/bundle.js)
+          JS_GZIP=$(gzip -c _site/js/bundle.js | wc -c)
+          echo "JS: ${JS_SIZE} bytes (${JS_GZIP} gzipped)"
+        fi
+        
+        if [ -f "_site/js/syntax_highlighter_bg.wasm" ]; then
+          WASM_SIZE=$(stat -c%s _site/js/syntax_highlighter_bg.wasm)
+          echo "WASM: ${WASM_SIZE} bytes"
+        fi
+
+    - name: Create .nojekyll for GitHub Pages
+      run: touch _site/.nojekyll
+
+    - name: Deploy to GitHub Pages
+      if: github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        publish_branch: gh-pages
+        force_orphan: true
+        commit_message: 'Deploy: ${{ github.sha }}'
+
+    - name: Deploy Preview (PR)
+      if: github.event_name == 'pull_request'
+      run: |
+        echo "This is a pull request build"
+        echo "Site built successfully and ready for preview"
+        echo "Built files are available in _site/ directory"
+        
+        # You could add additional steps here to deploy to a preview environment
+        # For example, using Vercel's preview deployments or Netlify Deploy Previews
+
+    - name: Comment PR with build status
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          
+          let comment = '## Build Preview\n\n';
+          comment += 'Site built successfully!\n\n';
+          
+          // Add file sizes if available
+          try {
+            const cssSize = fs.statSync('_site/css/main.css').size;
+            const jsSize = fs.statSync('_site/js/bundle.js').size;
+            const wasmSize = fs.statSync('_site/js/syntax_highlighter_bg.wasm').size;
+            
+            comment += '### Bundle Sizes\n';
+            comment += `- CSS: ${Math.round(cssSize/1024)}KB\n`;
+            comment += `- JavaScript: ${Math.round(jsSize/1024)}KB\n`;
+            comment += `- WebAssembly: ${Math.round(wasmSize/1024)}KB\n`;
+            comment += `- Total: ${Math.round((cssSize + jsSize + wasmSize)/1024)}KB\n\n`;
+          } catch (e) {
+            comment += '_Bundle size analysis not available_\n\n';
+          }
+          
+          comment += '### Files Generated\n';
+          comment += '- 11ty static site\n';
+          comment += '- JavaScript bundle\n';
+          comment += '- WebAssembly syntax highlighter\n';
+          comment += '- Optimized CSS\n';
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
