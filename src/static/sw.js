@@ -9,7 +9,7 @@ const RUNTIME_CACHE_NAME = 'terminal-runtime-v1';
 const STATIC_ASSETS = [
   '/',
   '/about/',
-  '/projects/', 
+  '/projects/',
   '/resume/',
   '/contact/',
   '/tutorials/',
@@ -33,9 +33,10 @@ const RUNTIME_CACHE_PATTERNS = [
 // Install event - cache static assets
 self.addEventListener('install', event => {
   console.log('[SW] Installing service worker');
-  
+
   event.waitUntil(
-    caches.open(STATIC_CACHE_NAME)
+    caches
+      .open(STATIC_CACHE_NAME)
       .then(cache => {
         console.log('[SW] Caching static assets');
         return cache.addAll(STATIC_ASSETS);
@@ -53,16 +54,19 @@ self.addEventListener('install', event => {
 // Activate event - clean up old caches
 self.addEventListener('activate', event => {
   console.log('[SW] Activating service worker');
-  
+
   event.waitUntil(
-    caches.keys()
+    caches
+      .keys()
       .then(cacheNames => {
         return Promise.all(
           cacheNames
             .filter(cacheName => {
-              return cacheName.startsWith('terminal-') && 
-                     cacheName !== STATIC_CACHE_NAME && 
-                     cacheName !== RUNTIME_CACHE_NAME;
+              return (
+                cacheName.startsWith('terminal-') &&
+                cacheName !== STATIC_CACHE_NAME &&
+                cacheName !== RUNTIME_CACHE_NAME
+              );
             })
             .map(cacheName => {
               console.log('[SW] Deleting old cache:', cacheName);
@@ -81,35 +85,35 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
-  
+
   // Skip non-GET requests
   if (request.method !== 'GET') {
     return;
   }
-  
+
   // Skip chrome-extension and other non-http(s) requests
   if (!url.protocol.startsWith('http')) {
     return;
   }
-  
+
   // Handle navigation requests (HTML pages)
   if (request.mode === 'navigate') {
     event.respondWith(handleNavigationRequest(request));
     return;
   }
-  
+
   // Handle static assets
   if (isStaticAsset(request)) {
     event.respondWith(handleStaticAsset(request));
     return;
   }
-  
+
   // Handle runtime assets with stale-while-revalidate
   if (shouldCacheRuntime(request)) {
     event.respondWith(handleRuntimeAsset(request));
     return;
   }
-  
+
   // Default: network first, no caching
   event.respondWith(fetch(request));
 });
@@ -119,29 +123,29 @@ async function handleNavigationRequest(request) {
   try {
     // Try network first
     const networkResponse = await fetch(request);
-    
+
     // Cache successful responses
     if (networkResponse.ok) {
       const cache = await caches.open(RUNTIME_CACHE_NAME);
       cache.put(request, networkResponse.clone());
     }
-    
+
     return networkResponse;
   } catch (error) {
     console.log('[SW] Network failed for navigation, trying cache:', request.url);
-    
+
     // Fallback to cache
     const cachedResponse = await caches.match(request);
     if (cachedResponse) {
       return cachedResponse;
     }
-    
+
     // Fallback to offline page or root
     const fallbackResponse = await caches.match('/');
     if (fallbackResponse) {
       return fallbackResponse;
     }
-    
+
     // Last resort - return a basic offline response
     return new Response(
       `<!DOCTYPE html>
@@ -149,18 +153,18 @@ async function handleNavigationRequest(request) {
       <head>
         <title>Offline - Utsav Balar</title>
         <style>
-          body { 
-            font-family: monospace; 
-            background: #0f0f0f; 
-            color: #00ff41; 
-            padding: 2rem; 
+          body {
+            font-family: monospace;
+            background: #0f0f0f;
+            color: #00ff41;
+            padding: 2rem;
             text-align: center;
           }
-          .terminal { 
-            border: 1px solid #333; 
-            padding: 1rem; 
-            max-width: 600px; 
-            margin: 2rem auto; 
+          .terminal {
+            border: 1px solid #333;
+            padding: 1rem;
+            max-width: 600px;
+            margin: 2rem auto;
           }
         </style>
       </head>
@@ -185,13 +189,13 @@ async function handleNavigationRequest(request) {
 // Handle static assets (cache first)
 async function handleStaticAsset(request) {
   const cachedResponse = await caches.match(request);
-  
+
   if (cachedResponse) {
     // Serve from cache and update in background
     fetchAndCache(request);
     return cachedResponse;
   }
-  
+
   // Not in cache, fetch and cache
   return fetchAndCache(request);
 }
@@ -200,12 +204,12 @@ async function handleStaticAsset(request) {
 async function handleRuntimeAsset(request) {
   const cachedResponse = await caches.match(request);
   const fetchPromise = fetchAndCache(request);
-  
+
   // Return cached version immediately if available
   if (cachedResponse) {
     return cachedResponse;
   }
-  
+
   // Otherwise wait for network
   return fetchPromise;
 }
@@ -214,15 +218,15 @@ async function handleRuntimeAsset(request) {
 async function fetchAndCache(request) {
   try {
     const networkResponse = await fetch(request);
-    
+
     // Only cache successful responses
     if (networkResponse.ok) {
       const cache = await caches.open(RUNTIME_CACHE_NAME);
-      
+
       // Clone the response since it can only be consumed once
       cache.put(request, networkResponse.clone());
     }
-    
+
     return networkResponse;
   } catch (error) {
     console.error('[SW] Fetch failed:', error);
@@ -256,7 +260,7 @@ async function syncContactForm() {
 // Push notifications (if needed in future)
 self.addEventListener('push', event => {
   if (!event.data) return;
-  
+
   const data = event.data.json();
   const options = {
     body: data.body,
@@ -271,26 +275,22 @@ self.addEventListener('push', event => {
         icon: '/icons/action-open.png'
       },
       {
-        action: 'close', 
+        action: 'close',
         title: 'Close',
         icon: '/icons/action-close.png'
       }
     ]
   };
-  
-  event.waitUntil(
-    self.registration.showNotification(data.title, options)
-  );
+
+  event.waitUntil(self.registration.showNotification(data.title, options));
 });
 
 // Handle notification clicks
 self.addEventListener('notificationclick', event => {
   event.notification.close();
-  
+
   if (event.action === 'open' || !event.action) {
-    event.waitUntil(
-      clients.openWindow(event.notification.data || '/')
-    );
+    event.waitUntil(clients.openWindow(event.notification.data || '/'));
   }
 });
 

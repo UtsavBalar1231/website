@@ -18,7 +18,7 @@ Disallow: /package*.json
 
 # Allow access to all main content
 Allow: /about/
-Allow: /projects/  
+Allow: /projects/
 Allow: /resume/
 Allow: /tutorials/
 Allow: /books/
@@ -43,7 +43,7 @@ Allow: /sw.js
 User-agent: Googlebot
 Allow: /
 
-User-agent: Bingbot  
+User-agent: Bingbot
 Allow: /
 
 User-agent: LinkedInBot

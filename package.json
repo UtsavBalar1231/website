@@ -7,7 +7,8 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "concurrently \"eleventy --serve\" \"rollup -c -w\"",
-		"build": "eleventy && rollup -c",
+		"build": "eleventy && rollup -c && ./build-syntax-highlighter.sh",
+		"build:wasm": "./syntax-highlighter/build.sh && cp syntax-highlighter/pkg/*.js _site/js/ && cp syntax-highlighter/pkg/*.wasm _site/js/",
 		"preview": "eleventy --serve --pathprefix=/",
 		"clean": "rm -rf _site",
 		"lint": "eslint src/js/**/*.js",

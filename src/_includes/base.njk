@@ -1,173 +1,179 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="classic-dark">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if title %}{{ title }} - {% endif %}Utsav Balar</title>
-    <meta name="description" content="{{ description or 'Embedded Linux & BSP Engineer | Linux Kernel Developer | Custom ROM Developer with expertise in device drivers, BSP engineering, and embedded systems optimization.' }}">
-    <meta name="keywords" content="Utsav Balar, Embedded Linux, BSP Engineer, Linux Kernel, Device Drivers, Custom ROM, Vicharak, Rockchip, Qualcomm, ARM Architecture, U-Boot, Yocto, Buildroot, AOSP, Android, Raspberry Pi, RK3399, RK3588, Samsung Exynos, FreeBSD, Open Source">
-    <meta name="author" content="Utsav Balar">
-    <meta name="robots" content="index, follow">
-    <meta name="geo.region" content="IN-GJ">
-    <meta name="geo.placename" content="Surat, Gujarat, India">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="{% if title %}{{ title }} - {% endif %}Utsav Balar | Embedded Linux Engineer">
-    <meta property="og:description" content="{{ description or 'Embedded Linux and BSP Engineer with expertise in Linux kernel development, device drivers, and custom ROM development for various hardware platforms.' }}">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://utsavbalar.in{{ page.url }}">
-    <meta property="og:image" content="https://utsavbalar.in/icons/icon-512x512.png">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:site_name" content="Utsav Balar">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@UtsavTheCunt">
-    <meta name="twitter:creator" content="@UtsavTheCunt">
-    <meta name="twitter:title" content="{% if title %}{{ title }} - {% endif %}Utsav Balar | Embedded Linux Engineer">
-    <meta name="twitter:description" content="{{ description or 'Embedded Linux and BSP Engineer with expertise in Linux kernel development, device drivers, and custom ROM development.' }}">
-    <meta name="twitter:image" content="https://utsavbalar.in/icons/icon-512x512.png">
-    
-    <!-- PWA -->
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#0f0f0f">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/css/main.css">
-    
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-    {
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>{% if title %}{{ title }} - {% endif %}Utsav Balar</title>
+	<meta name="description"
+		content="{{ description or 'Embedded Linux & BSP Engineer | Linux Kernel Developer | Custom ROM Developer with expertise in device drivers, BSP engineering, and embedded systems optimization.' }}" />
+	<meta name="keywords"
+		content="Utsav Balar, Embedded Linux, BSP Engineer, Linux Kernel, Device Drivers, Custom ROM, Vicharak, Rockchip, Qualcomm, ARM Architecture, U-Boot, Yocto, Buildroot, AOSP, Android, Raspberry Pi, RK3399, RK3588, Samsung Exynos, FreeBSD, Open Source" />
+	<meta name="author" content="Utsav Balar" />
+	<meta name="robots" content="index, follow" />
+	<meta name="geo.region" content="IN-GJ" />
+	<meta name="geo.placename" content="Surat, Gujarat, India" />
+
+	<!-- Open Graph -->
+	<meta property="og:title" content="{% if title %}{{ title }} - {% endif %}Utsav Balar | Embedded Linux Engineer" />
+	<meta property="og:description"
+		content="{{ description or 'Embedded Linux and BSP Engineer with expertise in Linux kernel development, device drivers, and custom ROM development for various hardware platforms.' }}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://utsavbalar.in{{ page.url }}" />
+	<meta property="og:image" content="https://utsavbalar.in/icons/icon-512x512.png" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:site_name" content="Utsav Balar" />
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@UtsavTheCunt" />
+	<meta name="twitter:creator" content="@UtsavTheCunt" />
+	<meta name="twitter:title" content="{% if title %}{{ title }} - {% endif %}Utsav Balar | Embedded Linux Engineer" />
+	<meta name="twitter:description"
+		content="{{ description or 'Embedded Linux and BSP Engineer with expertise in Linux kernel development, device drivers, and custom ROM development.' }}" />
+	<meta name="twitter:image" content="https://utsavbalar.in/icons/icon-512x512.png" />
+
+	<!-- PWA -->
+	<link rel="manifest" href="/manifest.json" />
+	<meta name="theme-color" content="#0f0f0f" />
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="/css/main.css" />
+
+	<!-- JSON-LD Structured Data -->
+	<script type="application/ld+json">
+      {
         "@context": "https://schema.org",
         "@graph": [
-            {
-                "@type": "Person",
-                "@id": "https://utsavbalar.in/#person",
-                "name": "Utsav Balar",
-                "givenName": "Utsav",
-                "familyName": "Balar",
-                "jobTitle": "Embedded Linux & BSP Engineer",
-                "description": "Linux Kernel Developer specializing in embedded systems and custom ROM development",
-                "url": "https://utsavbalar.in/",
-                "image": "https://utsavbalar.in/icons/icon-512x512.png",
-                "email": "utsavbalar1231@gmail.com",
-                "telephone": "+91-7600-529-280",
-                "address": {
-                    "@type": "PostalAddress",
-                    "addressLocality": "Surat",
-                    "addressRegion": "Gujarat", 
-                    "addressCountry": "IN",
-                    "postalCode": "395006"
-                },
-                "sameAs": [
-                    "https://github.com/UtsavBalar1231",
-                    "https://linkedin.com/in/utsavbalar",
-                    "https://twitter.com/UtsavTheCunt",
-                    "https://t.me/utsavthecunt",
-                    "https://reddit.com/user/utsavthecunt",
-                    "https://open.spotify.com/user/21xsxpeenbk6f6cedao77vxpy"
-                ],
-                "knowsAbout": [
-                    "Linux Kernel Development",
-                    "Embedded Systems",
-                    "BSP Engineering", 
-                    "Device Drivers",
-                    "Custom ROM Development",
-                    "ARM Architecture",
-                    "Raspberry Pi",
-                    "Rockchip SoCs"
-                ],
-                "alumniOf": [
-                    {
-                        "@type": "EducationalOrganization",
-                        "name": "National Institute of Technology, Meghalaya",
-                        "address": "Meghalaya, India"
-                    },
-                    {
-                        "@type": "EducationalOrganization", 
-                        "name": "UKA Tarsadia University",
-                        "address": "Gujarat, India"
-                    }
-                ]
+          {
+            "@type": "Person",
+            "@id": "https://utsavbalar.in/#person",
+            "name": "Utsav Balar",
+            "givenName": "Utsav",
+            "familyName": "Balar",
+            "jobTitle": "Embedded Linux & BSP Engineer",
+            "description": "Linux Kernel Developer specializing in embedded systems and custom ROM development",
+            "url": "https://utsavbalar.in/",
+            "image": "https://utsavbalar.in/icons/icon-512x512.png",
+            "email": "utsavbalar1231@gmail.com",
+            "telephone": "+91-7600-529-280",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Surat",
+              "addressRegion": "Gujarat",
+              "addressCountry": "IN",
+              "postalCode": "395006"
             },
-            {
-                "@type": "WebSite",
-                "@id": "https://utsavbalar.in/#website",
-                "url": "https://utsavbalar.in/",
-                "name": "Utsav Balar - Embedded Linux Engineer",
-                "description": "Portfolio of Utsav Balar, Embedded Linux & BSP Engineer",
-                "publisher": {
-                    "@id": "https://utsavbalar.in/#person"
-                },
-                "potentialAction": {
-                    "@type": "SearchAction",
-                    "target": "https://utsavbalar.in/?search={search_term_string}",
-                    "query-input": "required name=search_term_string"
-                }
+            "sameAs": [
+              "https://github.com/UtsavBalar1231",
+              "https://linkedin.com/in/utsavbalar",
+              "https://twitter.com/UtsavTheCunt",
+              "https://t.me/utsavthecunt",
+              "https://reddit.com/user/utsavthecunt",
+              "https://open.spotify.com/user/21xsxpeenbk6f6cedao77vxpy"
+            ],
+            "knowsAbout": [
+              "Linux Kernel Development",
+              "Embedded Systems",
+              "BSP Engineering",
+              "Device Drivers",
+              "Custom ROM Development",
+              "ARM Architecture",
+              "Raspberry Pi",
+              "Rockchip SoCs"
+            ],
+            "alumniOf": [
+              {
+                "@type": "EducationalOrganization",
+                "name": "National Institute of Technology, Meghalaya",
+                "address": "Meghalaya, India"
+              },
+              {
+                "@type": "EducationalOrganization",
+                "name": "UKA Tarsadia University",
+                "address": "Gujarat, India"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://utsavbalar.in/#website",
+            "url": "https://utsavbalar.in/",
+            "name": "Utsav Balar - Embedded Linux Engineer",
+            "description": "Portfolio of Utsav Balar, Embedded Linux & BSP Engineer",
+            "publisher": {
+              "@id": "https://utsavbalar.in/#person"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://utsavbalar.in/?search={search_term_string}",
+              "query-input": "required name=search_term_string"
             }
+          }
         ]
-    }
+      }
     </script>
 </head>
+
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <div class="terminal-container">
-        {% include "ascii-header.njk" %}
-        
-        <nav class="terminal-nav" role="navigation" aria-label="Main navigation">
-            {% include "nav.njk" %}
-        </nav>
-        
-        <main class="terminal-content" id="main-content">
-            {{ content | safe }}
-        </main>
-        
-        <footer class="terminal-footer">
-            {% include "footer.njk" %}
-        </footer>
-    </div>
+	<a href="#main-content" class="skip-link">Skip to main content</a>
+	<div class="terminal-container">
+		{% include "ascii-header.njk" %}
 
-    <!-- Theme switcher -->
-    <div class="theme-switcher" role="toolbar" aria-label="Theme selection" aria-describedby="theme-help">
-        <div id="theme-help" class="sr-only">Use these buttons to switch between different color themes, or press T to cycle through them</div>
-        <button class="theme-btn" data-theme="classic-dark" aria-label="Classic dark theme" aria-pressed="true">
-            <span class="theme-indicator" aria-hidden="true"></span>
-            <span class="sr-only">Classic Dark</span>
-        </button>
-        <button class="theme-btn" data-theme="light" aria-label="Light theme" aria-pressed="false">
-            <span class="theme-indicator" aria-hidden="true"></span>
-            <span class="sr-only">Light</span>
-        </button>
-        <button class="theme-btn" data-theme="hacker-green" aria-label="Hacker green theme" aria-pressed="false">
-            <span class="theme-indicator" aria-hidden="true"></span>
-            <span class="sr-only">Hacker Green</span>
-        </button>
-        <button class="theme-btn" data-theme="matrix" aria-label="Matrix theme" aria-pressed="false">
-            <span class="theme-indicator" aria-hidden="true"></span>
-            <span class="sr-only">Matrix</span>
-        </button>
-        <button class="theme-btn" data-theme="solarized-dark" aria-label="Solarized dark theme" aria-pressed="false">
-            <span class="theme-indicator" aria-hidden="true"></span>
-            <span class="sr-only">Solarized Dark</span>
-        </button>
-    </div>
+		<nav class="terminal-nav" role="navigation" aria-label="Main navigation">
+			{% include "nav.njk" %}
+		</nav>
 
-    <!-- Scripts -->
-    <script src="/js/bundle.js"></script>
-    
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => console.log('SW registered'))
-                    .catch(registrationError => console.log('SW registration failed'));
-            });
-        }
-    </script>
+		<main class="terminal-content" id="main-content">{{ content | safe }}</main>
+
+		<footer class="terminal-footer">{% include "footer.njk" %}</footer>
+	</div>
+
+	<!-- Theme switcher -->
+	<div class="theme-switcher" role="toolbar" aria-label="Theme selection" aria-describedby="theme-help">
+		<div id="theme-help" class="sr-only">
+			Use these buttons to switch between different color themes, or press T to cycle through them
+		</div>
+		<button class="theme-btn" data-theme="classic-dark" aria-label="Classic dark theme" aria-pressed="true">
+			<span class="theme-indicator" aria-hidden="true"></span>
+			<span class="sr-only">Classic Dark</span>
+		</button>
+		<button class="theme-btn" data-theme="light" aria-label="Light theme" aria-pressed="false">
+			<span class="theme-indicator" aria-hidden="true"></span>
+			<span class="sr-only">Light</span>
+		</button>
+		<button class="theme-btn" data-theme="hacker-green" aria-label="Hacker green theme" aria-pressed="false">
+			<span class="theme-indicator" aria-hidden="true"></span>
+			<span class="sr-only">Hacker Green</span>
+		</button>
+		<button class="theme-btn" data-theme="matrix" aria-label="Matrix theme" aria-pressed="false">
+			<span class="theme-indicator" aria-hidden="true"></span>
+			<span class="sr-only">Matrix</span>
+		</button>
+		<button class="theme-btn" data-theme="solarized-dark" aria-label="Solarized dark theme" aria-pressed="false">
+			<span class="theme-indicator" aria-hidden="true"></span>
+			<span class="sr-only">Solarized Dark</span>
+		</button>
+	</div>
+
+	<!-- Scripts -->
+	<script src="/js/bundle.js"></script>
+
+	<!-- Service Worker Registration -->
+	<script>
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker
+					.register('/sw.js')
+					.then(registration => console.log('SW registered'))
+					.catch(registrationError => console.log('SW registration failed'));
+			});
+		}
+	</script>
 </body>
+
 </html>

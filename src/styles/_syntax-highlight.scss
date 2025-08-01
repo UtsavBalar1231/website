@@ -1,0 +1,108 @@
+// Ultra-lightweight syntax highlighting styles
+// Compatible with all 5 themes, terminal aesthetic
+// Target: <200 bytes when compressed
+
+// Base syntax highlighting styles
+.hl-keyword {
+  color: var(--text-accent);
+  font-weight: 600;
+}
+
+.hl-function {
+  color: var(--link-color);
+}
+
+.hl-string {
+  color: var(--prompt-color);
+}
+
+.hl-comment {
+  color: var(--text-secondary);
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.hl-number {
+  color: var(--cursor-color);
+}
+
+.hl-operator {
+  color: var(--text-accent);
+}
+
+.hl-identifier {
+  color: var(--command-color);
+}
+
+.hl-punctuation {
+  color: var(--text-secondary);
+}
+
+// Enhanced code blocks for syntax highlighting
+pre code {
+  .hl-keyword {
+    font-weight: 700;
+  }
+  
+  .hl-function {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.2s ease;
+    
+    &:hover {
+      text-decoration-color: currentColor;
+    }
+  }
+}
+
+// Theme-specific overrides for better contrast
+[data-theme="light"] {
+  .hl-comment {
+    opacity: 0.6;
+  }
+  
+  .hl-string {
+    color: #1976d2;
+  }
+}
+
+[data-theme="hacker-green"] {
+  .hl-keyword {
+    color: #00ff00;
+    text-shadow: 0 0 2px #00ff0044;
+  }
+  
+  .hl-string {
+    color: #00cc00;
+  }
+}
+
+[data-theme="matrix"] {
+  .hl-function {
+    color: #65fcb3;
+    text-shadow: 0 0 1px #65fcb344;
+  }
+  
+  .hl-keyword {
+    color: #00ff41;
+    text-shadow: 0 0 2px #00ff4144;
+  }
+}
+
+[data-theme="solarized-dark"] {
+  .hl-keyword {
+    color: #268bd2;
+  }
+  
+  .hl-string {
+    color: #2aa198;
+  }
+  
+  .hl-comment {
+    color: #586e75;
+  }
+  
+  .hl-number {
+    color: #d33682;
+  }
+}

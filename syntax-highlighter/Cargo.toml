@@ -1,0 +1,39 @@
+[package]
+name = "syntax-highlighter"
+version = "0.1.0"
+edition = "2021"
+authors = ["Utsav Balar <utsavbalar1231@gmail.com>"]
+description = "Ultra-lightweight WebAssembly syntax highlighter"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2"
+
+[dependencies.web-sys]
+version = "0.3"
+features = [
+  "console",
+  "Document",
+  "Element",
+  "HtmlElement",
+  "Window",
+  "NodeList",
+  "Node",
+]
+
+[dependencies.js-sys]
+version = "0.3"
+
+[dependencies.console_error_panic_hook]
+version = "0.1"
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = true
+
+[profile.release]
+opt-level = "z"
+lto = true
+panic = "abort"
