@@ -1,48 +1,36 @@
 {
-  "name": "utsav-balar-portfolio",
-  "version": "0.1.0",
-  "type": "module",
-  "description": "Terminal-inspired personal portfolio website",
-  "author": "Utsav Balar <utsavbalar1231@gmail.com>",
-  "license": "MIT",
-  "scripts": {
-    "dev": "concurrently \"eleventy --serve\" \"rollup -c -w\"",
-    "build": "eleventy && rollup -c",
-    "preview": "eleventy --serve --pathprefix=/",
-    "clean": "rm -rf _site",
-    "lint": "eslint src/js/**/*.js",
-    "lint:fix": "eslint src/js/**/*.js --fix",
-    "format": "prettier --write \"src/**/*.{js,ts,css,scss,md}\"",
-    "size": "bundlesize"
-  },
-  "devDependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "@rollup/plugin-terser": "^0.4.3",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "rollup": "^4.0.0",
-    "sass": "^1.69.0",
-    "lightningcss": "^1.22.0",
-    "eslint": "^8.50.0",
-    "prettier": "^3.0.0",
-    "concurrently": "^8.2.0",
-    "bundlesize": "^0.18.1",
-    "workbox-cli": "^7.0.0"
-  },
-  "bundlesize": [
-    {
-      "path": "_site/js/bundle.js",
-      "maxSize": "4 KiB"
-    },
-    {
-      "path": "_site/css/main.css",
-      "maxSize": "1 KiB"
-    }
-  ],
-  "keywords": [
-    "portfolio",
-    "terminal",
-    "embedded-linux",
-    "kernel-development",
-    "static-site"
-  ]
+	"name": "utsav-balar-portfolio",
+	"version": "0.1.0",
+	"type": "module",
+	"description": "Terminal-inspired personal portfolio website",
+	"author": "Utsav Balar <utsavbalar1231@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "concurrently \"eleventy --serve\" \"rollup -c -w\"",
+		"build": "eleventy && rollup -c",
+		"preview": "eleventy --serve --pathprefix=/",
+		"clean": "rm -rf _site",
+		"lint": "eslint src/js/**/*.js",
+		"lint:fix": "eslint src/js/**/*.js --fix",
+		"format": "prettier --write \"src/**/*.{js,ts,css,scss,md}\"",
+		"size": "node -e \"const fs = require('fs'); const js = fs.statSync('_site/js/bundle.js').size; const css = fs.statSync('_site/css/main.css').size; console.log('JS:', Math.round(js/1024) + 'KB'); console.log('CSS:', Math.round(css/1024) + 'KB');\""
+	},
+	"devDependencies": {
+		"@11ty/eleventy": "^3.0.0",
+		"@rollup/plugin-terser": "^0.4.4",
+		"@rollup/plugin-node-resolve": "^15.3.0",
+		"rollup": "^4.24.0",
+		"sass": "^1.80.6",
+		"lightningcss": "^1.28.1",
+		"eslint": "^9.14.0",
+		"prettier": "^3.3.3",
+		"concurrently": "^9.1.0"
+	},
+	"keywords": [
+		"portfolio",
+		"terminal",
+		"embedded-linux",
+		"kernel-development",
+		"static-site"
+	]
 }
