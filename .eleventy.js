@@ -2,9 +2,9 @@ import { DateTime } from "luxon";
 
 export default function(eleventyConfig) {
   // Copy static assets
-  eleventyConfig.addPassthroughCopy("src/static");
+  eleventyConfig.addPassthroughCopy({"src/static": "."});
   eleventyConfig.addPassthroughCopy("src/js");
-  eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy({"src/css": "css"});
   
   // Watch for changes in JavaScript files
   eleventyConfig.addWatchTarget("src/js/");
