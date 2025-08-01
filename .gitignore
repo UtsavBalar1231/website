@@ -115,3 +115,6 @@ rollup.config.js.map
 
 # Vercel
 .vercel
+
+# Target
+syntax-highlighter/target/
