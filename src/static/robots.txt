@@ -1,0 +1,65 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://utsavbalar.in/sitemap.xml
+
+# Crawl-delay for respectful bots
+Crawl-delay: 1
+
+# Block access to development and build files
+Disallow: /node_modules/
+Disallow: /_site/
+Disallow: /.git/
+Disallow: /src/
+Disallow: /*.log$
+Disallow: /*.json$
+Disallow: /package*.json
+
+# Allow access to all main content
+Allow: /about/
+Allow: /projects/  
+Allow: /resume/
+Allow: /tutorials/
+Allow: /books/
+Allow: /quotes/
+Allow: /contact/
+
+# Allow access to static assets
+Allow: /css/
+Allow: /js/
+Allow: /icons/
+Allow: /images/
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg
+Allow: *.svg
+Allow: *.ico
+Allow: /manifest.json
+Allow: /sw.js
+
+# Special instructions for different bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot  
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /about/
+Allow: /resume/
+Allow: /projects/
+
+User-agent: TwitterBot
+Allow: /
+
+# Block aggressive crawlers
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

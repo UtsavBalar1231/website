@@ -1,0 +1,480 @@
+// Terminal Portfolio - Main Styles
+// Target: <1 KiB gzipped
+
+// CSS Custom Properties for Theming
+:root {
+  // Classic Dark Theme (default)
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #00ff41;
+  --text-secondary: #cccccc;
+  --text-accent: #ffffff;
+  --border-color: #333333;
+  --cursor-color: #00ff41;
+  --prompt-color: #00ff41;
+  --command-color: #ffffff;
+  --link-color: #00ff41;
+  --link-hover: #33ff66;
+}
+
+// Light Theme
+[data-theme="light"] {
+  --bg-primary: #fafafa;
+  --bg-secondary: #f0f0f0;
+  --text-primary: #2e7d32;
+  --text-secondary: #424242;
+  --text-accent: #000000;
+  --border-color: #e0e0e0;
+  --cursor-color: #2e7d32;
+  --prompt-color: #1976d2;
+  --command-color: #000000;
+  --link-color: #1976d2;
+  --link-hover: #1565c0;
+}
+
+// Hacker Green Theme
+[data-theme="hacker-green"] {
+  --bg-primary: #000000;
+  --bg-secondary: #001100;
+  --text-primary: #00ff00;
+  --text-secondary: #00cc00;
+  --text-accent: #00ff00;
+  --border-color: #003300;
+  --cursor-color: #00ff00;
+  --prompt-color: #00ff00;
+  --command-color: #00cc00;
+  --link-color: #00ff00;
+  --link-hover: #33ff33;
+}
+
+// Matrix Theme
+[data-theme="matrix"] {
+  --bg-primary: #000000;
+  --bg-secondary: #001a00;
+  --text-primary: #00ff41;
+  --text-secondary: #008f11;
+  --text-accent: #65fcb3;
+  --border-color: #003d00;
+  --cursor-color: #00ff41;
+  --prompt-color: #65fcb3;
+  --command-color: #00ff41;
+  --link-color: #65fcb3;
+  --link-hover: #33ff66;
+}
+
+// Solarized Dark Theme
+[data-theme="solarized-dark"] {
+  --bg-primary: #002b36;
+  --bg-secondary: #073642;
+  --text-primary: #2aa198;
+  --text-secondary: #839496;
+  --text-accent: #fdf6e3;
+  --border-color: #586e75;
+  --cursor-color: #2aa198;
+  --prompt-color: #268bd2;
+  --command-color: #839496;
+  --link-color: #268bd2;
+  --link-hover: #2aa198;
+}
+
+// Base Reset & Typography
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+body {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Terminal Container
+.terminal-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// ASCII Header
+.ascii-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ascii-logo {
+  color: var(--text-accent);
+  font-size: 0.5rem;
+  line-height: 1;
+  overflow-x: auto;
+  white-space: pre;
+  
+  @media (max-width: 768px) {
+    font-size: 0.25rem;
+  }
+}
+
+// Terminal Lines & Prompts
+.terminal-line {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.prompt {
+  color: var(--prompt-color);
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.command {
+  color: var(--command-color);
+}
+
+.terminal-output {
+  margin: 0.5rem 0 1rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border-color);
+  
+  p {
+    margin: 0.25rem 0;
+  }
+}
+
+// Navigation
+.terminal-nav {
+  margin-bottom: 2rem;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 1rem 0;
+}
+
+.nav-item {
+  margin: 0.25rem 0;
+}
+
+.nav-link {
+  color: var(--link-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0;
+  transition: color 0.2s ease;
+  
+  &:hover,
+  &:focus {
+    color: var(--link-hover);
+    outline: 1px solid var(--link-hover);
+    outline-offset: 2px;
+  }
+  
+  &.nav-active {
+    color: var(--text-accent);
+    font-weight: bold;
+  }
+}
+
+.file-perms {
+  margin-right: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.file-name {
+  color: inherit;
+}
+
+// Main Content
+.terminal-content {
+  flex: 1;
+  margin-bottom: 2rem;
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-accent);
+    margin: 1.5rem 0 1rem 0;
+    font-weight: bold;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+  }
+  
+  p {
+    margin: 1rem 0;
+    line-height: 1.6;
+  }
+  
+  a {
+    color: var(--link-color);
+    text-decoration: underline;
+    
+    &:hover,
+    &:focus {
+      color: var(--link-hover);
+    }
+  }
+  
+  code {
+    background: var(--bg-secondary);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-size: 0.9rem;
+  }
+  
+  pre {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 5px;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+    
+    code {
+      background: none;
+      padding: 0;
+    }
+  }
+  
+  blockquote {
+    border-left: 3px solid var(--text-primary);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+  
+  ul, ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+  
+  li {
+    margin: 0.5rem 0;
+  }
+}
+
+// Footer
+.terminal-footer {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  
+  a {
+    color: var(--link-color);
+    
+    &:hover {
+      color: var(--link-hover);
+    }
+  }
+}
+
+// Cursor Animation
+.cursor {
+  color: var(--cursor-color);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+// Theme Switcher
+.theme-switcher {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 100;
+}
+
+.theme-btn {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  
+  &:hover,
+  &:focus {
+    border-color: var(--text-primary);
+    outline: none;
+  }
+  
+  &.active {
+    border-color: var(--text-accent);
+    box-shadow: 0 0 0 2px var(--text-primary);
+  }
+}
+
+.theme-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  
+  [data-theme="classic-dark"] & {
+    background: #00ff41;
+  }
+  
+  [data-theme="light"] & {
+    background: #2e7d32;
+  }
+  
+  [data-theme="hacker-green"] & {
+    background: #00ff00;
+  }
+  
+  [data-theme="matrix"] & {
+    background: #65fcb3;
+  }
+  
+  [data-theme="solarized-dark"] & {
+    background: #2aa198;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .terminal-container {
+    padding: 0.5rem;
+  }
+  
+  .ascii-logo {
+    font-size: 0.3rem;
+  }
+  
+  .theme-switcher {
+    top: 0.5rem;
+    right: 0.5rem;
+    flex-direction: column;
+  }
+  
+  .terminal-line {
+    font-size: 0.9rem;
+  }
+}
+
+// Screen reader only content
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Skip to main content link
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--bg-secondary);
+  color: var(--text-accent);
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 3px;
+  z-index: 1000;
+  
+  &:focus {
+    top: 6px;
+  }
+}
+
+// Focus indicators
+:focus {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  :root {
+    --bg-primary: #000000;
+    --bg-secondary: #111111;
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --text-accent: #ffffff;
+    --border-color: #ffffff;
+    --link-color: #ffffff;
+    --link-hover: #cccccc;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .cursor {
+    animation: none;
+  }
+}
+
+// Print Styles
+@media print {
+  .theme-switcher,
+  .cursor,
+  .sr-only {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .ascii-logo {
+    color: black !important;
+  }
+  
+  a {
+    text-decoration: underline !important;
+    color: black !important;
+  }
+  
+  // Print URLs after links
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+}

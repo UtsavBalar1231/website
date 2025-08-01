@@ -1,0 +1,54 @@
+<div class="terminal-line">
+    <span class="prompt">user@embedded-linux:~$</span> 
+    <span class="command">ls -la ~/portfolio/</span>
+</div>
+<ul class="nav-list" role="menubar">
+    <li class="nav-item" role="none">
+        <a href="/" class="nav-link {% if page.url == '/' %}nav-active{% endif %}" role="menuitem">
+            <span class="file-perms">drwxr-xr-x</span>
+            <span class="file-name">home/</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/about/" class="nav-link {% if page.url == '/about/' %}nav-active{% endif %}" role="menuitem">
+            <span class="file-perms">-rw-r--r--</span>
+            <span class="file-name">about.md</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/projects/" class="nav-link {% if page.url == '/projects/' %}nav-active{% endif %}" role="menuitem">
+            <span class="file-perms">drwxr-xr-x</span>
+            <span class="file-name">projects/</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/resume/" class="nav-link {% if page.url == '/resume/' %}nav-active{% endif %}" role="menuitem">
+            <span class="file-perms">-rw-r--r--</span>
+            <span class="file-name">resume.pdf</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/tutorials/" class="nav-link {% if '/tutorials/' in page.url %}nav-active{% endif %}" role="menuitem">
+            <span class="file-perms">drwxr-xr-x</span>
+            <span class="file-name">tutorials/</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/books/" class="nav-link {% if page.url == '/books/' %}nav-active{% endif %}" role="menuitem">
+            <span class="file-perms">-rw-r--r--</span>
+            <span class="file-name">books.txt</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/quotes/" class="nav-link {% if page.url == '/quotes/' %}nav-active{% endif %}" role="menuitem">
+            <span class="file-perms">-rw-r--r--</span>
+            <span class="file-name">quotes.db</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/contact/" class="nav-link {% if page.url == '/contact/' %}nav-active{% endif %}" role="menuitem">
+            <span class="file-perms">-rw-r--r--</span>
+            <span class="file-name">contact.vcard</span>
+        </a>
+    </li>
+</ul>

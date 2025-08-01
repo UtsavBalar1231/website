@@ -1,0 +1,48 @@
+{
+  "name": "utsav-balar-portfolio",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Terminal-inspired personal portfolio website",
+  "author": "Utsav Balar <utsavbalar1231@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"eleventy --serve\" \"rollup -c -w\"",
+    "build": "eleventy && rollup -c",
+    "preview": "eleventy --serve --pathprefix=/",
+    "clean": "rm -rf _site",
+    "lint": "eslint src/js/**/*.js",
+    "lint:fix": "eslint src/js/**/*.js --fix",
+    "format": "prettier --write \"src/**/*.{js,ts,css,scss,md}\"",
+    "size": "bundlesize"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "rollup": "^4.0.0",
+    "sass": "^1.69.0",
+    "lightningcss": "^1.22.0",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.0",
+    "concurrently": "^8.2.0",
+    "bundlesize": "^0.18.1",
+    "workbox-cli": "^7.0.0"
+  },
+  "bundlesize": [
+    {
+      "path": "_site/js/bundle.js",
+      "maxSize": "4 KiB"
+    },
+    {
+      "path": "_site/css/main.css",
+      "maxSize": "1 KiB"
+    }
+  ],
+  "keywords": [
+    "portfolio",
+    "terminal",
+    "embedded-linux",
+    "kernel-development",
+    "static-site"
+  ]
+}
