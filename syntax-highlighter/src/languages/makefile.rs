@@ -10,19 +10,19 @@ impl MakefileLanguage {
             "all" | "clean" | "install" | "uninstall" | "distclean" | "check" | "test" |
             "dist" | "distcheck" | "maintainer-clean" | "mostlyclean" | "realclean" |
             "info" | "dvi" | "html" | "pdf" | "ps" | "tags" | "TAGS" |
-            
+
             // Make directives
             "include" | "sinclude" | "-include" | "override" | "export" | "unexport" |
             "vpath" | "define" | "endef" | "ifdef" | "ifndef" | "ifeq" | "ifneq" |
             "else" | "endif" | "error" | "warning" | "eval" | "call" |
-            
+
             // Built-in functions (without parentheses)
             "subst" | "patsubst" | "strip" | "findstring" | "filter" | "filter-out" |
             "sort" | "word" | "wordlist" | "words" | "firstword" | "lastword" |
             "dir" | "notdir" | "suffix" | "basename" | "addsuffix" | "addprefix" |
             "join" | "wildcard" | "realpath" | "abspath" | "if" | "or" | "and" |
-            "foreach" | "file" | "shell" | "origin" | "flavor" | "value" |
-            
+            "foreach" | "file" | "shell" | "origin" | "flavor" | "value" | "MAKE" |
+
             // Common build tools
             "gcc" | "g++" | "clang" | "clang++" | "ld" | "ar" | "ranlib" |
             "objcopy" | "objdump" | "nm" | "size" | "readelf" | "make" | "cmake" |

@@ -345,10 +345,15 @@ body {
     position: relative;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
     
-    &::before {
-      content: '$ ';
-      color: var(--text-primary);
-      opacity: 0.7;
+    // Only add $ prompt for bash/shell code blocks
+    &[data-language="bash"],
+    &[data-language="shell"],
+    &[data-language="sh"] {
+      &::before {
+        content: '$ ';
+        color: var(--text-primary);
+        opacity: 0.7;
+      }
     }
     
     code {
