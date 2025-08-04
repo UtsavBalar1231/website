@@ -53,14 +53,9 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         
-        # Copy built files to _site directory for Vercel
-        mkdir -p _site/js
-        cp syntax-highlighter/pkg/syntax_highlighter.js _site/js/
-        cp syntax-highlighter/pkg/syntax_highlighter_bg.wasm _site/js/
-        
-        # Add files to git
-        git add _site/js/syntax_highlighter.js
-        git add _site/js/syntax_highlighter_bg.wasm
+        # Add built WASM files to git (they're already in syntax-highlighter/pkg/)
+        git add syntax-highlighter/pkg/syntax_highlighter.js
+        git add syntax-highlighter/pkg/syntax_highlighter_bg.wasm
         
         # Only commit if there are changes
         if git diff --staged --quiet; then

@@ -19,6 +19,7 @@ if ! command -v cargo &>/dev/null; then
 	# Try to copy from existing pkg directory
 	if [ -f "syntax-highlighter/pkg/syntax_highlighter.js" ] && [ -f "syntax-highlighter/pkg/syntax_highlighter_bg.wasm" ]; then
 		echo "Found existing WASM files in pkg directory"
+		mkdir -p _site/js
 		cp syntax-highlighter/pkg/syntax_highlighter.js _site/js/
 		cp syntax-highlighter/pkg/syntax_highlighter_bg.wasm _site/js/
 		echo "Using cached WASM files"
