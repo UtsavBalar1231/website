@@ -2,7 +2,7 @@
 // Target: <1 KiB gzipped
 
 // Import syntax highlighting styles
-@import 'syntax-highlight';
+@use 'syntax-highlight';
 
 // CSS Custom Properties for Theming
 :root {
