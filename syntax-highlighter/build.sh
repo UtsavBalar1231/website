@@ -5,21 +5,21 @@
 
 set -e
 
-echo "🦀 Building ultra-lightweight syntax highlighter..."
+echo "Building ultra-lightweight syntax highlighter..."
 
 # Check if wasm-pack is installed
 if ! command -v wasm-pack &> /dev/null; then
-    echo "❌ wasm-pack not found. Installing..."
+    echo "ERROR: wasm-pack not found. Installing..."
     cargo install wasm-pack
 fi
 
 # Clean previous builds
-echo "🧹 Cleaning previous builds..."
+echo "Cleaning previous builds..."
 rm -rf pkg/
 rm -rf target/
 
 # Build optimized WASM package
-echo "⚡ Building optimized WASM package..."
+echo "Building optimized WASM package..."
 wasm-pack build \
     --target web \
     --out-dir pkg \
@@ -28,19 +28,19 @@ wasm-pack build \
     --no-pack
 
 # Further optimize the WASM binary
-echo "🔧 Optimizing WASM binary..."
+echo "Optimizing WASM binary..."
 if command -v wasm-opt &> /dev/null; then
     echo "Using wasm-opt for further optimization..."
     wasm-opt -Os pkg/syntax_highlighter_bg.wasm -o pkg/syntax_highlighter_bg.wasm
 else
-    echo "⚠️  wasm-opt not found. Consider installing binaryen for smaller binaries:"
+    echo "WARNING: wasm-opt not found. Consider installing binaryen for smaller binaries:"
     echo "   Ubuntu/Debian: sudo apt install binaryen"
     echo "   macOS: brew install binaryen"
     echo "   Or build from source: https://github.com/WebAssembly/binaryen"
 fi
 
 # Display build stats
-echo "📊 Build statistics:"
+echo "Build statistics:"
 if [ -f pkg/syntax_highlighter_bg.wasm ]; then
     WASM_SIZE=$(wc -c < pkg/syntax_highlighter_bg.wasm)
     WASM_SIZE_KB=$((WASM_SIZE / 1024))
@@ -61,12 +61,13 @@ if [ -f pkg/syntax_highlighter_bg.wasm ] && [ -f pkg/syntax_highlighter.js ]; th
     
     # Check against our target
     if [ $TOTAL_SIZE_KB -lt 2 ]; then
-        echo "✅ Size target achieved! (< 2KB)"
+        echo "SUCCESS: Size target achieved! (< 2KB)"
     else
-        echo "⚠️  Size target missed (${TOTAL_SIZE_KB}KB > 2KB)"
+        echo "WARNING: Size target missed (${TOTAL_SIZE_KB}KB > 2KB)"
     fi
 fi
 
-echo "✨ Build complete! Files generated in pkg/"
-echo "📁 pkg/syntax_highlighter.js - JS loader"
-echo "📁 pkg/syntax_highlighter_bg.wasm - WASM binary"
+echo "Build complete! Files generated in pkg/"
+echo "Generated files:"
+echo "  pkg/syntax_highlighter.js - JS loader"
+echo "  pkg/syntax_highlighter_bg.wasm - WASM binary"

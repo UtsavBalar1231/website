@@ -153,3 +153,6 @@ git subtree push --prefix _site origin gh-pages
 - **WASM Dependencies**: Syntax highlighting requires Rust/Cargo for fresh builds, but fallback files are included
 - **Build Environment**: Supports both full Rust development and deployment environments without Rust
 - **Performance Budget**: All changes must respect the strict 200 KiB total transfer limit
+
+## Code Style Guidelines
+- **Emoji Usage**: Avoid using emojis across the entire codebase, including scripts

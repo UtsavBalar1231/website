@@ -8,7 +8,7 @@ set -e
 echo "Starting deployment build..."
 
 # Clean previous build
-echo "🧹 Cleaning previous build..."
+echo "Cleaning previous build..."
 rm -rf _site
 mkdir -p _site
 
@@ -23,7 +23,7 @@ echo "Building CSS..."
 ./build-css.sh
 
 # Build JavaScript
-echo "⚙️  Building JavaScript..."
+echo "Building JavaScript..."
 npx rollup -c
 
 # Build static site
@@ -38,7 +38,7 @@ cp -r src/static/* _site/
 touch _site/.nojekyll
 
 # Generate sitemap
-echo "🗺️  Generating sitemap..."
+echo "Generating sitemap..."
 cat > _site/sitemap.xml << 'EOF'
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
