@@ -8,9 +8,10 @@
 	"scripts": {
 		"dev": "concurrently \"eleventy --serve\" \"rollup -c -w\"",
 		"build": "eleventy && rollup -c && ./build-syntax-highlighter.sh",
-		"build:vercel": "npm run build:11ty && npm run build:js && npm run build:wasm:fallback",
+		"build:vercel": "npm run build:css && npm run build:11ty && npm run build:js && npm run build:wasm:fallback",
+		"build:css": "mkdir -p _site/css && sass src/styles/main.scss _site/css/main.css --style=compressed --no-source-map --load-path=node_modules",
 		"build:11ty": "eleventy",
-		"build:js": "rollup -c",
+		"build:js": "mkdir -p _site/js && rollup -c",
 		"build:wasm": "./syntax-highlighter/build.sh && cp syntax-highlighter/pkg/*.js _site/js/ && cp syntax-highlighter/pkg/*.wasm _site/js/",
 		"build:wasm:fallback": "./build-syntax-highlighter.sh",
 		"preview": "eleventy --serve --pathprefix=/",

@@ -61,16 +61,22 @@ jobs:
         cd ..
         echo "WASM build complete"
 
+    - name: Build CSS
+      run: |
+        echo "Building CSS from SCSS..."
+        npm run build:css
+        echo "CSS build complete"
+
     - name: Build 11ty site
       run: |
         echo "Building 11ty site..."
-        npx eleventy
+        npm run build:11ty
         echo "11ty build complete"
 
     - name: Build and bundle JavaScript
       run: |
         echo "Building JavaScript bundle..."
-        npx rollup -c
+        npm run build:js
         echo "JavaScript bundle complete"
 
     - name: Copy WASM files to output

@@ -38,6 +38,16 @@ npm run size
 ./build-css.sh
 ```
 
+### Syntax Highlighter Build
+```bash
+# Build Rust WASM syntax highlighter (requires Cargo)
+./build-syntax-highlighter.sh
+
+# Alternative build commands (package.json scripts)
+npm run build:wasm        # Build WASM with Rust toolchain
+npm run build:wasm:fallback  # Use fallback without Rust
+```
+
 ### Deployment
 ```bash
 # Full deployment build with size analysis and GitHub Pages preparation
@@ -54,6 +64,7 @@ git subtree push --prefix _site origin gh-pages
 - **Bundler**: Rollup with Terser (aggressive minification)
 - **Styling**: SCSS → lightningcss optimization pipeline
 - **JavaScript**: Vanilla ES6+ with class-based architecture
+- **Syntax Highlighting**: Custom Rust WASM module with fallback support
 - **Templates**: Nunjucks (.njk) with Markdown content
 - **PWA**: Service worker with Workbox integration
 
@@ -68,6 +79,10 @@ git subtree push --prefix _site origin gh-pages
 │   ├── styles/          # SCSS source files
 │   ├── js/              # JavaScript modules (bundled by Rollup)
 │   └── static/          # Static assets (favicon, manifest, SW)
+├── syntax-highlighter/  # Rust WASM syntax highlighting module
+│   ├── src/            # Rust source code
+│   ├── pkg/            # Generated WASM output
+│   └── build.sh        # WASM build script
 ├── _site/               # Generated output (deployment target)
 ├── .eleventy.js         # Eleventy configuration (ESM)
 ├── rollup.config.js     # JavaScript bundling configuration
@@ -77,9 +92,15 @@ git subtree push --prefix _site origin gh-pages
 ### Build Pipeline
 1. **CSS Pipeline**: SCSS compilation → lightningcss optimization → output to `_site/css/`
 2. **JavaScript Pipeline**: Rollup bundling → Terser minification → output to `_site/js/bundle.js`
-3. **Static Site Generation**: Eleventy processes Markdown + Nunjucks → HTML output
-4. **Asset Copying**: Static files copied to `_site/static/`
-5. **Size Analysis**: Automated bundle size checking against 200 KiB budget
+3. **WASM Pipeline**: Rust syntax highlighter → WASM compilation → output to `_site/js/`
+4. **Static Site Generation**: Eleventy processes Markdown + Nunjucks → HTML output
+5. **Asset Copying**: Static files copied to `_site/static/`
+6. **Size Analysis**: Automated bundle size checking against 200 KiB budget
+
+### Build Order
+- **Development**: CSS + JS watch → Eleventy serve (concurrent)
+- **Production**: CSS → HTML → JS → WASM → assets → deploy
+- **Vercel**: CSS → HTML → JS → WASM fallback (all in `build:vercel`)
 
 ### JavaScript Architecture
 **Class-based modular design** in `src/js/main.js`:
@@ -125,3 +146,10 @@ git subtree push --prefix _site origin gh-pages
 - `rollup.config.js`: JavaScript bundling with terser optimization
 - `package.json`: Build scripts and performance budget definitions (bundlesize)
 - `deploy.sh`: Production deployment script with automated size analysis
+- `build-css.sh`: SCSS compilation with lightningcss optimization
+- `build-syntax-highlighter.sh`: Rust WASM build integration with fallback support
+
+## Important Development Notes
+- **WASM Dependencies**: Syntax highlighting requires Rust/Cargo for fresh builds, but fallback files are included
+- **Build Environment**: Supports both full Rust development and deployment environments without Rust
+- **Performance Budget**: All changes must respect the strict 200 KiB total transfer limit
