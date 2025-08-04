@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="classic-dark">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Tutorials - Utsav Balar</title>
+	<meta name="description"
+		content="Linux kernel development tutorials for embedded systems" />
+	<meta name="keywords"
+		content="Utsav Balar, Embedded Linux, BSP Engineer, Linux Kernel, Device Drivers, Custom ROM, Vicharak, Rockchip, Qualcomm, ARM Architecture, U-Boot, Yocto, Buildroot, AOSP, Android, Raspberry Pi, RK3399, RK3588, Samsung Exynos, FreeBSD, Open Source" />
+	<meta name="author" content="Utsav Balar" />
+	<meta name="robots" content="index, follow" />
+	<meta name="geo.region" content="IN-GJ" />
+	<meta name="geo.placename" content="Surat, Gujarat, India" />
+
+	<!-- Open Graph -->
+	<meta property="og:title" content="Tutorials - Utsav Balar | Embedded Linux Engineer" />
+	<meta property="og:description"
+		content="Linux kernel development tutorials for embedded systems" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://utsavbalar.in/tutorials/" />
+	<meta property="og:image" content="https://utsavbalar.in/icons/icon-512x512.png" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:site_name" content="Utsav Balar" />
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@UtsavTheCunt" />
+	<meta name="twitter:creator" content="@UtsavTheCunt" />
+	<meta name="twitter:title" content="Tutorials - Utsav Balar | Embedded Linux Engineer" />
+	<meta name="twitter:description"
+		content="Linux kernel development tutorials for embedded systems" />
+	<meta name="twitter:image" content="https://utsavbalar.in/icons/icon-512x512.png" />
+
+	<!-- PWA -->
+	<link rel="manifest" href="/manifest.json" />
+	<meta name="theme-color" content="#0f0f0f" />
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="/css/main.css" />
+
+	<!-- JSON-LD Structured Data -->
+	<script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://utsavbalar.in/#person",
+            "name": "Utsav Balar",
+            "givenName": "Utsav",
+            "familyName": "Balar",
+            "jobTitle": "Embedded Linux & BSP Engineer",
+            "description": "Linux Kernel Developer specializing in embedded systems and custom ROM development",
+            "url": "https://utsavbalar.in/",
+            "image": "https://utsavbalar.in/icons/icon-512x512.png",
+            "email": "utsavbalar1231@gmail.com",
+            "telephone": "+91-7600-529-280",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Surat",
+              "addressRegion": "Gujarat",
+              "addressCountry": "IN",
+              "postalCode": "395006"
+            },
+            "sameAs": [
+              "https://github.com/UtsavBalar1231",
+              "https://linkedin.com/in/utsavbalar",
+              "https://twitter.com/UtsavTheCunt",
+              "https://t.me/utsavthecunt",
+              "https://reddit.com/user/utsavthecunt",
+              "https://open.spotify.com/user/21xsxpeenbk6f6cedao77vxpy"
+            ],
+            "knowsAbout": [
+              "Linux Kernel Development",
+              "Embedded Systems",
+              "BSP Engineering",
+              "Device Drivers",
+              "Custom ROM Development",
+              "ARM Architecture",
+              "Raspberry Pi",
+              "Rockchip SoCs"
+            ],
+            "alumniOf": [
+              {
+                "@type": "EducationalOrganization",
+                "name": "National Institute of Technology, Meghalaya",
+                "address": "Meghalaya, India"
+              },
+              {
+                "@type": "EducationalOrganization",
+                "name": "UKA Tarsadia University",
+                "address": "Gujarat, India"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://utsavbalar.in/#website",
+            "url": "https://utsavbalar.in/",
+            "name": "Utsav Balar - Embedded Linux Engineer",
+            "description": "Portfolio of Utsav Balar, Embedded Linux & BSP Engineer",
+            "publisher": {
+              "@id": "https://utsavbalar.in/#person"
+            },
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://utsavbalar.in/?search={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]
+      }
+    </script>
+</head>
+
+<body>
+	<a href="#main-content" class="skip-link">Skip to main content</a>
+	<div class="terminal-container">
+		<header class="ascii-header" role="banner">
+    <pre class="ascii-logo" aria-label="Utsav Balar ASCII Logo">
+ ██╗   ██╗████████╗███████╗ █████╗ ██╗   ██╗    ██████╗  █████╗ ██╗      █████╗ ██████╗ 
+ ██║   ██║╚══██╔══╝██╔════╝██╔══██╗██║   ██║    ██╔══██╗██╔══██╗██║     ██╔══██╗██╔══██╗
+ ██║   ██║   ██║   ███████╗███████║██║   ██║    ██████╔╝███████║██║     ███████║██████╔╝
+ ██║   ██║   ██║   ╚════██║██╔══██║╚██╗ ██╔╝    ██╔══██╗██╔══██║██║     ██╔══██║██╔══██╗
+ ╚██████╔╝   ██║   ███████║██║  ██║ ╚████╔╝     ██████╔╝██║  ██║███████╗██║  ██║██║  ██║
+  ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝  ╚═══╝      ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
+    </pre>
+    <div class="terminal-info">
+        <div class="terminal-line">
+            <span class="prompt">user@embedded-linux:~$</span> 
+            <span class="command">cat /etc/motd</span>
+        </div>
+        <div class="terminal-output">
+            <p>Welcome to Utsav Balar's embedded development environment</p>
+            <p>Kernel: Linux massiveDingus 6.15.8-arch1-2 #1 SMP PREEMPT_DYNAMIC Tue, 29 Jul 2025 15:05:00 +0000 x86_64 GNU/Linux | Shell: /bin/zsh</p>
+            <p>Last login: Thu Aug 01 12:00:00 IST 2025</p>
+        </div>
+    </div>
+</header>
+
+
+		<nav class="terminal-nav" role="navigation" aria-label="Main navigation">
+			<div class="terminal-line">
+    <span class="prompt">user@embedded-linux:~$</span> 
+    <span class="command">ls -la ~/portfolio/</span>
+</div>
+<ul class="nav-list" role="menubar">
+    <li class="nav-item" role="none">
+        <a href="/" class="nav-link " role="menuitem">
+            <span class="file-perms">drwxr-xr-x</span>
+            <span class="file-name">home/</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/about/" class="nav-link " role="menuitem">
+            <span class="file-perms">-rw-r--r--</span>
+            <span class="file-name">about.md</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/projects/" class="nav-link " role="menuitem">
+            <span class="file-perms">drwxr-xr-x</span>
+            <span class="file-name">projects/</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/resume/" class="nav-link " role="menuitem">
+            <span class="file-perms">-rw-r--r--</span>
+            <span class="file-name">resume.pdf</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/tutorials/" class="nav-link nav-active" role="menuitem">
+            <span class="file-perms">drwxr-xr-x</span>
+            <span class="file-name">tutorials/</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/books/" class="nav-link " role="menuitem">
+            <span class="file-perms">-rw-r--r--</span>
+            <span class="file-name">books.txt</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/quotes/" class="nav-link " role="menuitem">
+            <span class="file-perms">-rw-r--r--</span>
+            <span class="file-name">quotes.db</span>
+        </a>
+    </li>
+    <li class="nav-item" role="none">
+        <a href="/contact/" class="nav-link " role="menuitem">
+            <span class="file-perms">-rw-r--r--</span>
+            <span class="file-name">contact.vcard</span>
+        </a>
+    </li>
+</ul>
+
+		</nav>
+
+		<main class="terminal-content" id="main-content"><h1>Linux Kernel Development Tutorials</h1>
+<pre><code class="language-bash">$ ls -la ~/tutorials/kernel_development/
+total 5
+drwxr-xr-x tutorial-01-introduction-to-linux-kernel-modules/
+drwxr-xr-x tutorial-02-character-device-drivers-fundamentals/
+drwxr-xr-x tutorial-03-kernel-memory-management-for-drivers/
+drwxr-xr-x tutorial-04-synchronization-primitives/
+drwxr-xr-x tutorial-05-interrupt-handling-and-workqueues/
+</code></pre>
+<p>A comprehensive series of tutorials covering Linux kernel development for embedded systems, specifically targeting the Raspberry Pi 5 platform with ARM64 architecture.</p>
+<h2>Tutorial Series Overview</h2>
+<h3>Prerequisites</h3>
+<pre><code class="language-bash">$ cat /etc/requirements.txt
+- Basic C programming knowledge
+- Linux command line familiarity  
+- Understanding of operating system concepts
+- Raspberry Pi 5 or similar ARM64 development board
+</code></pre>
+<h3>Development Environment</h3>
+<pre><code class="language-bash">$ uname -a
+Linux raspberrypi 6.12.0+ #1 SMP PREEMPT ARM64 GNU/Linux
+
+$ gcc --version | head -1  
+gcc (Debian 12.2.0-14) 12.2.0
+
+$ ls /lib/modules/$(uname -r)/build
+# Kernel headers must be installed for module compilation
+</code></pre>
+<hr>
+<h2>Available Tutorials</h2>
+<h3><a href="/tutorials/01-introduction-to-linux-kernel-modules/">Tutorial 1: Introduction to Linux Kernel Modules</a></h3>
+<p><strong>Difficulty</strong>: Beginner<br>
+<strong>Topics</strong>: kernel, device-drivers, raspberry-pi, modules, hello-world</p>
+<pre><code class="language-bash">$ head -5 tutorial-01/hello.c
+#include &lt;linux/module.h&gt;
+#include &lt;linux/kernel.h&gt;
+#include &lt;linux/init.h&gt;
+
+MODULE_LICENSE(&quot;GPL&quot;);
+</code></pre>
+<p>Learn the fundamentals of Linux kernel modules and create your first 'Hello World' kernel module on the Raspberry Pi 5. This tutorial covers module structure, build system, and loading/unloading modules.</p>
+<p><strong>What you'll learn</strong>:</p>
+<ul>
+<li>Kernel module architecture and lifecycle</li>
+<li>Module build system with Makefiles</li>
+<li>Loading and unloading modules with insmod/rmmod</li>
+<li>Module parameters and metadata</li>
+<li>Basic debugging with printk and dmesg</li>
+</ul>
+<hr>
+<h3><a href="/tutorials/02-character-device-drivers-fundamentals/">Tutorial 2: Character Device Drivers Fundamentals</a></h3>
+<p><strong>Difficulty</strong>: Beginner<br>
+<strong>Topics</strong>: kernel, device-drivers, raspberry-pi, character-devices, file-operations</p>
+<pre><code class="language-bash">$ ls -la /dev/simple_char
+crw-rw-rw- 1 root root 248, 0 Aug  1 12:00 /dev/simple_char
+
+$ echo &quot;Hello Kernel&quot; &gt; /dev/simple_char
+$ cat /dev/simple_char
+Hello Kernel
+</code></pre>
+<p>Master the essentials of character device drivers in the Linux kernel with practical examples for Raspberry Pi 5. Learn about device numbers, file operations, and udev integration.</p>
+<p><strong>What you'll learn</strong>:</p>
+<ul>
+<li>Character device architecture and registration</li>
+<li>File operations (open, read, write, close, seek)</li>
+<li>Device number management (major/minor)</li>
+<li>User-space to kernel-space data transfer</li>
+<li>udev integration for automatic device creation</li>
+</ul>
+<hr>
+<h3><a href="/tutorials/03-kernel-memory-management-for-drivers/">Tutorial 3: Kernel Memory Management for Drivers</a></h3>
+<p><strong>Difficulty</strong>: Intermediate<br>
+<strong>Topics</strong>: kernel, device-drivers, memory-management, dma, raspberry-pi</p>
+<pre><code class="language-bash">$ cat /proc/meminfo | grep -E &quot;(MemTotal|MemFree)&quot;
+MemTotal:        8056320 kB
+MemFree:         6234156 kB
+
+$ dmesg | grep -i &quot;memory management&quot;
+[ 0.000000] Memory management initialized for ARM64
+</code></pre>
+<p>Deep dive into kernel memory management techniques essential for device driver development. Cover different allocation methods, DMA memory, and memory mapping.</p>
+<p><strong>What you'll learn</strong>:</p>
+<ul>
+<li>Kernel memory allocation (kmalloc, vmalloc, get_free_pages)</li>
+<li>DMA coherent memory allocation</li>
+<li>Memory mapping techniques (mmap implementation)</li>
+<li>Memory barriers and cache management on ARM64</li>
+<li>Debugging memory issues and leak detection</li>
+</ul>
+<hr>
+<h3><a href="/tutorials/04-synchronization-primitives/">Tutorial 4: Synchronization Primitives</a></h3>
+<p><strong>Difficulty</strong>: Intermediate<br>
+<strong>Topics</strong>: kernel, synchronization, concurrency, locking, raspberry-pi</p>
+<pre><code class="language-bash">$ cat /proc/lockdep_stats | head -5
+ lock-classes:                          1186
+ direct dependencies:                   6987
+ indirect dependencies:                22453
+ all direct dependencies:             131340
+ dependency chains:                   9738
+</code></pre>
+<p>Understanding concurrency and synchronization in the Linux kernel. Learn about different locking mechanisms and how to avoid race conditions in your drivers.</p>
+<p><strong>What you'll learn</strong>:</p>
+<ul>
+<li>Spinlocks and their variants</li>
+<li>Mutexes and semaphores</li>
+<li>Read-write locks and sequence locks</li>
+<li>Atomic operations and barriers</li>
+<li>Deadlock prevention and detection</li>
+</ul>
+<hr>
+<h3><a href="/tutorials/05-interrupt-handling-and-workqueues/">Tutorial 5: Interrupt Handling and Workqueues</a></h3>
+<p><strong>Difficulty</strong>: Advanced<br>
+<strong>Topics</strong>: kernel, interrupts, workqueues, bottom-halves, raspberry-pi</p>
+<pre><code class="language-bash">$ cat /proc/interrupts | head -10
+           CPU0       CPU1       CPU2       CPU3       
+  1:          0          0          0          0     GICv2  25 Level     vgic
+  2:       1847       2156       1923       2087     GICv2  27 Level     kvm guest ptimer
+  3:       1847       2156       1923       2087     GICv2  26 Level     kvm guest vtimer
+  5:          0          0          0          1     GICv2  33 Level     serial
+</code></pre>
+<p>Advanced tutorial covering interrupt handling, bottom halves, and deferred work mechanisms in the Linux kernel for embedded systems.</p>
+<p><strong>What you'll learn</strong>:</p>
+<ul>
+<li>Interrupt request and handling mechanisms</li>
+<li>Top-half vs bottom-half processing</li>
+<li>Workqueues and tasklets</li>
+<li>High-resolution timers</li>
+<li>GPIO interrupt handling on Raspberry Pi 5</li>
+</ul>
+<hr>
+<h2>Tutorial Structure</h2>
+<p>Each tutorial follows a consistent structure for optimal learning:</p>
+<pre><code class="language-bash">$ tree tutorial-template/
+tutorial-template/
+├── README.md              # Tutorial content and theory
+├── src/                   # Source code examples
+│   ├── basic_example.c    # Simple implementation
+│   ├── advanced_example.c # Advanced features
+│   └── Makefile          # Build configuration
+├── exercises/             # Hands-on exercises
+│   ├── exercise_1.md     # Practice problems
+│   └── solutions/        # Reference solutions
+└── references/            # Additional resources
+    ├── datasheet.pdf     # Hardware documentation
+    └── api_reference.md  # Kernel API reference
+</code></pre>
+<h2>Getting Started</h2>
+<h3>1. Set Up Development Environment</h3>
+<pre><code class="language-bash"># Update system
+sudo apt update &amp;&amp; sudo apt upgrade -y
+
+# Install development tools
+sudo apt install build-essential bc bison flex libssl-dev libelf-dev git
+
+# Install kernel headers
+sudo apt install raspberrypi-kernel-headers
+
+# Verify installation
+ls /lib/modules/$(uname -r)/build
+</code></pre>
+<h3>2. Clone Tutorial Repository</h3>
+<pre><code class="language-bash">git clone https://github.com/UtsavBalar1231/utsavbalar-linux-kernel-tutorials.git
+cd utsavbalar-linux-kernel-tutorials
+</code></pre>
+<h3>3. Start with Tutorial 1</h3>
+<pre><code class="language-bash">cd tutorial-01-introduction-to-linux-kernel-modules
+make
+sudo insmod hello.ko
+dmesg | tail
+</code></pre>
+<h2>Hardware Requirements</h2>
+<h3>Minimum Requirements</h3>
+<ul>
+<li><strong>Board</strong>: Raspberry Pi 5 (8GB recommended)</li>
+<li><strong>Storage</strong>: 32GB microSD card (Class 10 or better)</li>
+<li><strong>Power</strong>: Official Raspberry Pi 5 power supply</li>
+<li><strong>Peripherals</strong>: HDMI display, USB keyboard/mouse</li>
+</ul>
+<h3>Recommended Development Setup</h3>
+<ul>
+<li><strong>Serial Console</strong>: USB-to-TTL adapter for debugging</li>
+<li><strong>Network</strong>: Ethernet connection for SSH access</li>
+<li><strong>Storage</strong>: Additional USB storage for kernel sources</li>
+<li><strong>Tools</strong>: Logic analyzer for signal debugging (optional)</li>
+</ul>
+<h2>Safety Guidelines</h2>
+<pre><code class="language-bash">$ cat /etc/kernel_dev_warnings.txt
+IMPORTANT SAFETY NOTICES:
+
+1. Always test on development systems, never production
+2. Keep backups of working kernel configurations  
+3. Use serial console for recovery if system becomes unbootable
+4. Never run untested kernel modules on critical systems
+5. Understanding kernel crashes can damage hardware - use caution
+</code></pre>
+<h2>Community and Support</h2>
+<h3>Getting Help</h3>
+<ul>
+<li><strong>GitHub Issues</strong>: Report bugs and ask questions</li>
+<li><strong>Community Forum</strong>: Discuss with other learners</li>
+<li><strong>IRC</strong>: #kerneldev on libera.chat</li>
+<li><strong>Email</strong>: Direct questions to tutorial maintainer</li>
+</ul>
+<h3>Contributing</h3>
+<pre><code class="language-bash"># Fork the repository
+git fork https://github.com/UtsavBalar1231/utsavbalar-linux-kernel-tutorials.git
+
+# Create feature branch
+git checkout -b tutorial-improvement
+
+# Make changes and submit PR
+git commit -m &quot;docs: improve tutorial clarity&quot;
+git push origin tutorial-improvement
+</code></pre>
+<h2>Next Steps</h2>
+<p>After completing these tutorials, consider advancing to:</p>
+<ul>
+<li><strong>Platform Device Drivers</strong>: I2C, SPI, GPIO drivers</li>
+<li><strong>Network Device Drivers</strong>: Ethernet and wireless drivers</li>
+<li><strong>Block Device Drivers</strong>: Storage device drivers</li>
+<li><strong>Advanced Debugging</strong>: KGDB, crash analysis, perf profiling</li>
+<li><strong>Kernel Internals</strong>: Scheduler, memory management, VFS</li>
+</ul>
+<hr>
+<pre><code class="language-bash">$ echo &quot;Happy kernel hacking!&quot;
+Happy kernel hacking!
+
+$ echo &quot;Remember: With great kernel access comes great responsibility&quot;
+Remember: With great kernel access comes great responsibility
+</code></pre>
+</main>
+
+		<footer class="terminal-footer"><div class="terminal-line">
+    <span class="prompt">user@embedded-linux:~$</span> 
+    <span class="command">cat /sys/class/dmi/id/product_name</span>
+</div>
+<div class="terminal-output">
+    <p>&copy; 2025 Utsav Balar. Licensed under MIT.</p>
+    <p>Built with Eleventy &middot; Hosted on GitHub Pages &middot; Source available on <a href="https://github.com/UtsavBalar1231" target="_blank" rel="noopener">GitHub</a></p>
+</div>
+<div class="terminal-line">
+    <span class="prompt">user@embedded-linux:~$</span> 
+    <span class="cursor">█</span>
+</div>
+</footer>
+	</div>
+
+	<!-- Theme switcher -->
+	<div class="theme-switcher" role="toolbar" aria-label="Theme selection" aria-describedby="theme-help">
+		<div id="theme-help" class="sr-only">
+			Use these buttons to switch between different color themes, or press T to cycle through them
+		</div>
+		<button class="theme-btn" data-theme="classic-dark" aria-label="Classic dark theme" aria-pressed="true">
+			<span class="theme-indicator" aria-hidden="true"></span>
+			<span class="sr-only">Classic Dark</span>
+		</button>
+		<button class="theme-btn" data-theme="light" aria-label="Light theme" aria-pressed="false">
+			<span class="theme-indicator" aria-hidden="true"></span>
+			<span class="sr-only">Light</span>
+		</button>
+		<button class="theme-btn" data-theme="hacker-green" aria-label="Hacker green theme" aria-pressed="false">
+			<span class="theme-indicator" aria-hidden="true"></span>
+			<span class="sr-only">Hacker Green</span>
+		</button>
+		<button class="theme-btn" data-theme="matrix" aria-label="Matrix theme" aria-pressed="false">
+			<span class="theme-indicator" aria-hidden="true"></span>
+			<span class="sr-only">Matrix</span>
+		</button>
+		<button class="theme-btn" data-theme="solarized-dark" aria-label="Solarized dark theme" aria-pressed="false">
+			<span class="theme-indicator" aria-hidden="true"></span>
+			<span class="sr-only">Solarized Dark</span>
+		</button>
+	</div>
+
+	<!-- Scripts -->
+	<script src="/js/bundle.js"></script>
+
+	<!-- Service Worker Registration -->
+	<script>
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker
+					.register('/sw.js')
+					.then(registration => console.log('SW registered'))
+					.catch(registrationError => console.log('SW registration failed'));
+			});
+		}
+	</script>
+</body>
+
+</html>
